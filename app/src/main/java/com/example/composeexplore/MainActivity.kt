@@ -3,14 +3,16 @@ package com.example.composeexplore
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Divider
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -36,17 +38,24 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun InitUI() {
+    val counter = remember { mutableStateOf(0) }
+
     Column(
-        modifier = Modifier.padding(16.dp)
+        modifier = Modifier.fillMaxHeight()
     ) {
         Greeting("Android")
         NewStory("Bandung", "West Java", "Indonesia")
-        Popular(listPopular = listOf(
-            "Bakso",
-            "Cuanki",
-            "Seblak",
-            "Cilok"
-        ))
+        Popular(
+            listPopular = listOf(
+                "Bakso",
+                "Cuanki",
+                "Seblak",
+                "Cilok"
+            )
+        )
+        Counter(count = counter.value) {
+            counter.value = it
+        }
     }
 }
 
@@ -92,9 +101,39 @@ fun NewStory(
 
 @Composable
 fun Popular(listPopular: List<String>) {
-    for (popular in listPopular) {
-        Text(text = popular)
-        Divider(color = Color.Black)
+    LazyColumn {
+        items(items = listPopular) { popular ->
+            ItemPopular(popular = popular)
+            Divider(color = Color.Black)
+        }
+    }
+}
+
+@Composable
+fun ItemPopular(popular: String) {
+    var isSelected by remember { mutableStateOf(false) }
+    val backgroundColor by animateColorAsState(
+        targetValue = if (isSelected) Color.Gray else Color.Transparent
+    )
+    Text(
+        text = popular,
+        modifier = Modifier
+            .padding(8.dp)
+            .background(color = backgroundColor)
+            .clickable(onClick = { isSelected = !isSelected })
+    )
+    Divider(color = Color.Black)
+}
+
+@Composable
+fun Counter(count: Int, updateCount: (Int) -> Unit) {
+    Button(
+        onClick = { updateCount(count + 1) },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = if (count % 2 == 0) Color.Green else Color.Yellow
+        )
+    ) {
+        Text(text = "Clicked $count times")
     }
 }
 
