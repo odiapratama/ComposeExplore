@@ -6,12 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,7 +40,13 @@ fun InitUI() {
         modifier = Modifier.padding(16.dp)
     ) {
         Greeting("Android")
-        NewStory()
+        NewStory("Bandung", "West Java", "Indonesia")
+        Popular(listPopular = listOf(
+            "Bakso",
+            "Cuanki",
+            "Seblak",
+            "Cilok"
+        ))
     }
 }
 
@@ -48,7 +56,11 @@ fun Greeting(name: String) {
 }
 
 @Composable
-fun NewStory() {
+fun NewStory(
+    city: String,
+    province: String,
+    country: String
+) {
     MaterialTheme {
         val typography = MaterialTheme.typography
         Column {
@@ -63,18 +75,26 @@ fun NewStory() {
             )
             Spacer(modifier = Modifier.height(16.dp))
             Text(
-                text = "Bandung",
+                text = city,
                 style = typography.h6
             )
             Text(
-                text = "West Java",
+                text = province,
                 style = typography.body2
             )
             Text(
-                text = "Indonesia",
+                text = country,
                 style = typography.body2
             )
         }
+    }
+}
+
+@Composable
+fun Popular(listPopular: List<String>) {
+    for (popular in listPopular) {
+        Text(text = popular)
+        Divider(color = Color.Black)
     }
 }
 
