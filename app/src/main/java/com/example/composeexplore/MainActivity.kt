@@ -10,14 +10,19 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
@@ -40,21 +45,37 @@ class MainActivity : ComponentActivity() {
 fun InitUI() {
     val counter = remember { mutableStateOf(0) }
 
-    Column(
-        modifier = Modifier.fillMaxHeight()
-    ) {
-        Greeting("Android")
-        NewStory("Bandung", "West Java", "Indonesia")
-        Popular(
-            listPopular = listOf(
-                "Bakso",
-                "Cuanki",
-                "Seblak",
-                "Cilok"
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(text = "Hello World!")
+                },
+                actions = {
+                    IconButton(onClick = { }) {
+                        Icon(Icons.Filled.Favorite, contentDescription = null)
+                    }
+                }
             )
-        )
-        Counter(count = counter.value) {
-            counter.value = it
+        }
+    ) {
+        Column(
+            modifier = Modifier.padding(it)
+        ) {
+            Greeting("Android")
+            NewStory("Bandung", "West Java", "Indonesia")
+            Popular(
+                listPopular = listOf(
+                    "Bakso",
+                    "Cuanki",
+                    "Seblak",
+                    "Cilok"
+                )
+            )
+            Counter(count = counter.value) {
+                counter.value = it
+            }
+            Card()
         }
     }
 }
@@ -134,6 +155,37 @@ fun Counter(count: Int, updateCount: (Int) -> Unit) {
         )
     ) {
         Text(text = "Clicked $count times")
+    }
+}
+
+@Composable
+fun Card(modifier: Modifier = Modifier) {
+    Row(modifier = modifier
+        .padding(8.dp)
+        .clip(RoundedCornerShape(4.dp))
+        .background(MaterialTheme.colors.surface)
+        .clickable {
+
+        }
+        .padding(16.dp)
+    ) {
+        Surface(
+            modifier = Modifier.size(50.dp),
+            shape = CircleShape,
+            color = MaterialTheme.colors.onSurface.copy(alpha = 0.2f)
+        ) {
+
+        }
+        Column(
+            modifier = Modifier
+                .padding(8.dp)
+                .align(Alignment.CenterVertically)
+        ) {
+            Text(text = "Odia Pratama", fontWeight = FontWeight.Bold)
+            CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
+                Text(text = "3 Minutes ago", style = MaterialTheme.typography.body2)
+            }
+        }
     }
 }
 
