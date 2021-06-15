@@ -1,5 +1,6 @@
-package com.example.composeexplore
+package com.example.composeexplore.activities
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -21,10 +22,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composeexplore.R
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 
 class MainActivity : ComponentActivity() {
@@ -58,9 +61,9 @@ fun InitUI() {
                 }
             )
         }
-    ) {
+    ) { innerPadding ->
         Column(
-            modifier = Modifier.padding(it)
+            modifier = Modifier.padding(innerPadding)
         ) {
             Greeting("Android")
             NewStory("Bandung", "West Java", "Indonesia")
@@ -76,6 +79,7 @@ fun InitUI() {
                 counter.value = it
             }
             Card()
+            GoToList()
         }
     }
 }
@@ -186,6 +190,14 @@ fun Card(modifier: Modifier = Modifier) {
                 Text(text = "3 Minutes ago", style = MaterialTheme.typography.body2)
             }
         }
+    }
+}
+
+@Composable
+fun GoToList() {
+    val context = LocalContext.current
+    Button(onClick = { context.startActivity(Intent(context, ListActivity::class.java)) }) {
+        Text(text = "Next")
     }
 }
 
