@@ -12,11 +12,14 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionContext
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.composeexplore.ui.layout.firstBaselineToTop
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 import com.google.accompanist.coil.rememberCoilPainter
 import kotlinx.coroutines.launch
@@ -105,10 +108,71 @@ fun ScrollingList() {
     }
 }
 
+@Composable
+fun CustomLayout(
+    modifier: Modifier,
+    content: @Composable () -> Unit
+) {
+    Layout(
+        modifier = modifier,
+        content = content
+    ) { measurable, constraints ->
+        layout(measurable.size, constraints.maxHeight) {
+            // Add here
+        }
+    }
+}
+
+@Composable
+fun CustomColumn(
+    modifier: Modifier,
+    content: @Composable () -> Unit
+) {
+    Layout(
+        modifier = modifier,
+        content = content
+    ) { measurable, constraints ->
+        layout(measurable.size, constraints.maxHeight) {
+            val placeable = measurable.map { measurable ->
+                measurable.measure(constraints)
+            }
+            var y = 0
+            layout(constraints.maxWidth, constraints.maxHeight) {
+                placeable.forEach { placeable ->  
+                    placeable.placeRelative(0, y)
+                    y += placeable.height
+                }
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun ListPreview() {
     ComposeExploreTheme {
         InitList()
+    }
+}
+
+@Preview
+@Composable
+fun TextWithPaddingToBaselinePreview() {
+    ComposeExploreTheme {
+        CustomColumn(modifier = Modifier.padding(4.dp)) {
+            Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
+            Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
+            Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
+        }
+    }
+}
+
+@Preview
+@Composable
+fun TextWithNormalPaddingPreview() {
+    ComposeExploreTheme {
+        CustomLayout(modifier = Modifier.padding(top = 32.dp)) {
+            Text("Hi there!", Modifier.padding(top = 32.dp))
+        }
     }
 }
