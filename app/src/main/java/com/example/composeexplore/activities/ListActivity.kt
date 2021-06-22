@@ -12,7 +12,6 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionContext
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -80,25 +79,29 @@ fun ScrollingList() {
     val listSize = 100
     val scrollState = rememberLazyListState()
     val coroutineScope = rememberCoroutineScope()
-    
-    Column {
-        Row {
-           Button(onClick = {
-               coroutineScope.launch {
-                   scrollState.animateScrollToItem(0)
-               }
-           }) {
-               Text(text = "Scroll to the top")
-           }
 
-           Button(onClick = {
-               coroutineScope.launch {
-                   scrollState.animateScrollToItem(listSize - 1)
-               }
-           }) {
-               Text(text = "Scroll to the bottom")
-           }
+    CustomColumn(modifier = Modifier.padding(4.dp)) {
+        Row {
+            Button(onClick = {
+                coroutineScope.launch {
+                    scrollState.animateScrollToItem(0)
+                }
+            }) {
+                Text(text = "Scroll to the top")
+            }
+
+            Button(onClick = {
+                coroutineScope.launch {
+                    scrollState.animateScrollToItem(listSize - 1)
+                }
+            }) {
+                Text(text = "Scroll to the bottom")
+            }
         }
+
+        Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
+        Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
+        Text("Hi there!", Modifier.firstBaselineToTop(32.dp))
 
         LazyColumn(state = scrollState) {
             items(listSize) {
@@ -131,17 +134,15 @@ fun CustomColumn(
     Layout(
         modifier = modifier,
         content = content
-    ) { measurable, constraints ->
-        layout(measurable.size, constraints.maxHeight) {
-            val placeable = measurable.map { measurable ->
-                measurable.measure(constraints)
-            }
-            var y = 0
-            layout(constraints.maxWidth, constraints.maxHeight) {
-                placeable.forEach { placeable ->  
-                    placeable.placeRelative(0, y)
-                    y += placeable.height
-                }
+    ) { measurables, constraints ->
+        val placeable = measurables.map { measurable ->
+            measurable.measure(constraints)
+        }
+        var y = 0
+        layout(constraints.maxWidth, constraints.maxHeight) {
+            placeable.forEach { placeable ->
+                placeable.placeRelative(0, y)
+                y += placeable.height
             }
         }
     }
