@@ -78,7 +78,7 @@ fun InitUI() {
             Counter(count = counter.value) {
                 counter.value = it
             }
-            Card()
+            PersonalCard()
             GoToList()
         }
     }
@@ -163,7 +163,7 @@ fun Counter(count: Int, updateCount: (Int) -> Unit) {
 }
 
 @Composable
-fun Card(modifier: Modifier = Modifier) {
+fun PersonalCard(modifier: Modifier = Modifier) {
     Row(modifier = modifier
         .padding(8.dp)
         .clip(RoundedCornerShape(4.dp))
