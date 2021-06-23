@@ -21,6 +21,7 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.example.composeexplore.ui.layout.customPadding
 import com.example.composeexplore.ui.layout.firstBaselineToTop
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 import com.google.accompanist.coil.rememberCoilPainter
@@ -107,8 +108,13 @@ fun ScrollingList() {
                 Text(text = "Scroll to the bottom")
             }
         }
-        
-        Row(Modifier.horizontalScroll(rememberScrollState())) {
+
+        Row(
+            modifier = Modifier
+                .background(Color.LightGray)
+                .customPadding(16.dp)
+                .horizontalScroll(rememberScrollState())
+        ) {
             StaggeredGrid {
                 for (topic in topics) {
                     Chip(modifier = Modifier.padding(8.dp), text = topic)
@@ -198,7 +204,7 @@ fun StaggeredGrid(
 
         val rowY = IntArray(rows) { 0 }
         for (i in 1 until rows) {
-            rowY[i] = rowY[i-1] + rowHeights[i-1]
+            rowY[i] = rowY[i - 1] + rowHeights[i - 1]
         }
 
         layout(width, height) {
@@ -230,9 +236,11 @@ fun Chip(
             modifier = Modifier.padding(8.dp, 4.dp, 8.dp, 4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Box(modifier = Modifier
-                .size(16.dp, 16.dp)
-                .background(MaterialTheme.colors.secondary))
+            Box(
+                modifier = Modifier
+                    .size(16.dp, 16.dp)
+                    .background(MaterialTheme.colors.secondary)
+            )
             Spacer(Modifier.width(4.dp))
             Text(text = text)
         }
@@ -271,7 +279,7 @@ fun TextWithNormalPaddingPreview() {
 
 @Preview
 @Composable
-fun ChipProview() {
+fun ChipPreview() {
     ComposeExploreTheme {
         Chip(text = "Hello")
     }
