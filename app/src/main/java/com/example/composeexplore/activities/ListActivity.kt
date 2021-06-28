@@ -128,6 +128,9 @@ fun ScrollingList() {
         }
 
         ConstrainLayoutContent()
+        LargeConstraintLayout()
+        DecoupleConstraintLayout()
+        TwoTexts(text1 = "Hello", text2 ="World")
 
         LazyColumn(state = scrollState) {
             items(listSize) {
@@ -266,9 +269,6 @@ fun ConstrainLayoutContent() {
 
         val barrier = createEndBarrier(button1, text)
 
-        LargeConstraintLayout()
-        DecoupleConstraintLayout()
-
         Button(
             onClick = { },
             modifier = Modifier.constrainAs(button2) {
@@ -336,6 +336,35 @@ private fun decoupledConstraints(margin: Dp): ConstraintSet {
         constrain(text) {
             top.linkTo(button.bottom, margin)
         }
+    }
+}
+
+@Composable
+fun TwoTexts(
+    modifier: Modifier = Modifier,
+    text1: String,
+    text2: String
+) {
+    Row(modifier = modifier.height(IntrinsicSize.Min)) {
+        Text(
+            text = text1,
+            modifier = Modifier
+                .weight(1f)
+                .padding(start = 4.dp)
+                .wrapContentWidth(Alignment.Start)
+        )
+
+        Divider(color = Color.Black, modifier = Modifier
+            .fillMaxHeight()
+            .width(1.dp))
+        
+        Text(
+            text = text2,
+            modifier = Modifier
+                .weight(1f)
+                .padding(end = 4.dp)
+                .wrapContentWidth(Alignment.End)
+        )
     }
 }
 
