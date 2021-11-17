@@ -1,7 +1,6 @@
 package com.example.composeexplore.activities
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -17,7 +16,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -26,16 +24,19 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.constraintlayout.compose.atLeast
+import com.example.composeexplore.ui.component.CustomColumn
+import com.example.composeexplore.ui.component.CustomLayout
+import com.example.composeexplore.ui.component.StaggeredGrid
 import com.example.composeexplore.ui.layout.customPadding
 import com.example.composeexplore.ui.layout.firstBaselineToTop
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 import com.google.accompanist.coil.rememberCoilPainter
 import kotlinx.coroutines.launch
-import kotlin.math.max
 
 class ListActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContent {
             ComposeExploreTheme {
                 Surface(color = MaterialTheme.colors.background) {
@@ -130,99 +131,11 @@ fun ScrollingList() {
         ConstrainLayoutContent()
         LargeConstraintLayout()
         DecoupleConstraintLayout()
-        TwoTexts(text1 = "Hello", text2 ="World")
+        TwoTexts(text1 = "Hello", text2 = "World")
 
         LazyColumn(state = scrollState) {
             items(listSize) {
                 ImageListItem(index = it)
-            }
-        }
-    }
-}
-
-@Composable
-fun CustomLayout(
-    modifier: Modifier,
-    content: @Composable () -> Unit
-) {
-    Layout(
-        modifier = modifier,
-        content = content
-    ) { measurable, constraints ->
-        layout(measurable.size, constraints.maxHeight) {
-            // Add here
-        }
-    }
-}
-
-@Composable
-fun CustomColumn(
-    modifier: Modifier,
-    content: @Composable () -> Unit
-) {
-    Layout(
-        modifier = modifier,
-        content = content
-    ) { measurables, constraints ->
-        val placeable = measurables.map { measurable ->
-            measurable.measure(constraints)
-        }
-        var y = 0
-        layout(constraints.maxWidth, constraints.maxHeight) {
-            placeable.forEach { placeable ->
-                placeable.placeRelative(0, y)
-                y += placeable.height
-            }
-        }
-    }
-}
-
-@Composable
-fun StaggeredGrid(
-    modifier: Modifier = Modifier,
-    rows: Int = 3,
-    content: @Composable () -> Unit
-) {
-    Layout(
-        modifier = modifier,
-        content = content
-    ) { measurables, constraints ->
-
-        val rowWidths = IntArray(rows) { 0 }
-        val rowHeights = IntArray(rows) { 0 }
-
-        val placeables = measurables.mapIndexed { index, measurable ->
-
-            val placeable = measurable.measure(constraints)
-
-            val row = index % rows
-            rowWidths[row] += placeable.width
-            rowHeights[row] = max(rowHeights[row], placeable.height)
-
-            placeable
-        }
-
-        val width = rowWidths.maxOrNull()
-            ?.coerceIn(constraints.minWidth.rangeTo(constraints.maxWidth)) ?: constraints.minWidth
-
-        val height = rowHeights.sumOf { it }
-            .coerceIn(constraints.minHeight.rangeTo(constraints.maxHeight))
-
-        val rowY = IntArray(rows) { 0 }
-        for (i in 1 until rows) {
-            rowY[i] = rowY[i - 1] + rowHeights[i - 1]
-        }
-
-        layout(width, height) {
-            val rowX = IntArray(rows) { 0 }
-
-            placeables.forEachIndexed { index, placeable ->
-                val row = index % rows
-                placeable.placeRelative(
-                    x = rowX[row],
-                    y = rowY[row]
-                )
-                rowX[row] += placeable.width
             }
         }
     }
@@ -259,7 +172,7 @@ fun ConstrainLayoutContent() {
         val (button1, button2, text) = createRefs()
 
         Button(
-            onClick = {  },
+            onClick = { },
             modifier = Modifier.constrainAs(button1) {
                 top.linkTo(parent.top, 16.dp)
             }
@@ -311,7 +224,7 @@ fun DecoupleConstraintLayout() {
         } else {
             decoupledConstraints(32.dp)
         }
-        
+
         ConstraintLayout(constraints) {
             Button(
                 onClick = { },
@@ -319,7 +232,7 @@ fun DecoupleConstraintLayout() {
             ) {
                 Text(text = "Button")
             }
-            
+
             Text(text = "Text", Modifier.layoutId("text"))
         }
     }
@@ -354,10 +267,12 @@ fun TwoTexts(
                 .wrapContentWidth(Alignment.Start)
         )
 
-        Divider(color = Color.Black, modifier = Modifier
-            .fillMaxHeight()
-            .width(1.dp))
-        
+        Divider(
+            color = Color.Black, modifier = Modifier
+                .fillMaxHeight()
+                .width(1.dp)
+        )
+
         Text(
             text = text2,
             modifier = Modifier
