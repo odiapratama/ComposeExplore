@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import com.example.composeexplore.R
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 
+@ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalAnimationApi
 @Composable
 fun InitUI() {
     val counter = remember { mutableStateOf(0) }
@@ -80,6 +83,7 @@ fun InitUI() {
             }
             PersonalCard()
             GoToList()
+            GoToAnimals()
         }
     }
 }
@@ -201,6 +205,16 @@ fun GoToList() {
     }
 }
 
+@ExperimentalAnimationApi
+@Composable
+fun GoToAnimals() {
+    val context = LocalContext.current
+    Button(onClick = { context.startActivity(Intent(context, AnimalsActivity::class.java)) }) {
+        Text(text = "Animals")
+    }
+}
+
+@ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {

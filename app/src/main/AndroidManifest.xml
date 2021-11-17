@@ -25,6 +25,9 @@
         <activity
             android:name=".activities.ListActivity"
             android:theme="@style/Theme.ComposeExplore.NoActionBar" />
+        <activity
+            android:name=".activities.AnimalsActivity"
+            android:theme="@style/Theme.ComposeExplore.NoActionBar" />
     </application>
 
 </manifest>
