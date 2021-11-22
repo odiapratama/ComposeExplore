@@ -10,7 +10,7 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 
 @ExperimentalAnimationApi
 @Composable
-fun HomeAnimals() {
+fun HomeComposeAcademy() {
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(navController = navController, startDestination = "main") {
         composable(
@@ -34,7 +34,7 @@ fun HomeAnimals() {
                 ) + fadeIn(animationSpec = tween(300))
             },
         ) {
-            MainAnimals(navController = navController)
+            MainPage(navController = navController)
         }
 
         composable(
@@ -58,7 +58,7 @@ fun HomeAnimals() {
                 ) + fadeOut(animationSpec = tween(300))
             },
         ) {
-            DetailAnimal(navController = navController)
+            DetailPage(navController = navController)
         }
     }
 }

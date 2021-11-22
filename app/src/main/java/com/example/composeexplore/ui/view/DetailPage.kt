@@ -11,7 +11,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun DetailAnimal(navController: NavController) {
+fun DetailPage(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(

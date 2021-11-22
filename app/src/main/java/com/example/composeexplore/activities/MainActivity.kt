@@ -89,7 +89,7 @@ fun InitUI() {
                 }
                 PersonalCard()
                 GoToList()
-                GoToAnimals()
+                GoComposeAcademy()
             }
         }
     }
@@ -215,14 +215,14 @@ fun GoToList() {
 
 @ExperimentalAnimationApi
 @Composable
-fun GoToAnimals() {
+fun GoComposeAcademy() {
     val context = LocalContext.current
     Button(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp),
-        onClick = { context.startActivity(Intent(context, AnimalsActivity::class.java)) }) {
-        Text(text = "Animals")
+        onClick = { context.startActivity(Intent(context, ComposeAcademyActivity::class.java)) }) {
+        Text(text = "Compose Academy")
     }
 }
 
