@@ -11,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -65,12 +66,16 @@ fun InitUI() {
             )
         }
     ) { innerPadding ->
-        Column(
-            modifier = Modifier.padding(innerPadding)
+        LazyColumn(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
         ) {
-            Greeting("Android")
-            NewStory("Bandung", "West Java", "Indonesia")
-            Popular(
+            item {
+                Greeting("Android")
+                NewStory("Bandung", "West Java", "Indonesia")
+            }
+            popular(
                 listPopular = listOf(
                     "Bakso",
                     "Cuanki",
@@ -78,12 +83,14 @@ fun InitUI() {
                     "Cilok"
                 )
             )
-            Counter(count = counter.value) {
-                counter.value = it
+            item {
+                Counter(count = counter.value) {
+                    counter.value = it
+                }
+                PersonalCard()
+                GoToList()
+                GoToAnimals()
             }
-            PersonalCard()
-            GoToList()
-            GoToAnimals()
         }
     }
 }
@@ -128,13 +135,10 @@ fun NewStory(
     }
 }
 
-@Composable
-fun Popular(listPopular: List<String>) {
-    LazyColumn {
-        items(items = listPopular) { popular ->
-            ItemPopular(popular = popular)
-            Divider(color = Color.Black)
-        }
+fun LazyListScope.popular(listPopular: List<String>) {
+    items(items = listPopular) { popular ->
+        ItemPopular(popular = popular)
+        Divider(color = Color.Black)
     }
 }
 
@@ -200,7 +204,11 @@ fun PersonalCard(modifier: Modifier = Modifier) {
 @Composable
 fun GoToList() {
     val context = LocalContext.current
-    Button(onClick = { context.startActivity(Intent(context, ListActivity::class.java)) }) {
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        onClick = { context.startActivity(Intent(context, ListActivity::class.java)) }) {
         Text(text = "Next")
     }
 }
@@ -209,7 +217,11 @@ fun GoToList() {
 @Composable
 fun GoToAnimals() {
     val context = LocalContext.current
-    Button(onClick = { context.startActivity(Intent(context, AnimalsActivity::class.java)) }) {
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        onClick = { context.startActivity(Intent(context, AnimalsActivity::class.java)) }) {
         Text(text = "Animals")
     }
 }
