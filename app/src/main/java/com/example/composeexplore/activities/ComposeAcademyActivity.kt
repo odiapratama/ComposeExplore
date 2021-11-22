@@ -14,6 +14,7 @@ import com.example.composeexplore.ui.view.HomeComposeAcademy
 @ExperimentalAnimationApi
 class ComposeAcademyActivity : AppCompatActivity() {
 
+    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -26,6 +27,7 @@ class ComposeAcademyActivity : AppCompatActivity() {
     }
 }
 
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun InitView() {

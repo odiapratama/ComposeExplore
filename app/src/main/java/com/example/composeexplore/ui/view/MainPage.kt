@@ -2,8 +2,9 @@ package com.example.composeexplore.ui.view
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -13,6 +14,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.NavController
@@ -61,6 +63,7 @@ fun MainPage(navController: NavController) {
             )
         }
     ) {
+        val scrollState = rememberScrollState()
         val alpha = if (toState == MultiFabState.EXPANDED) 0.4f else 0f
         val color = ContextCompat.getColor(context, R.color.black)
         Box(
@@ -69,8 +72,25 @@ fun MainPage(navController: NavController) {
                 .background(Color(color))
                 .fillMaxSize()
         )
-        Button(onClick = { navController.navigate("detail") }) {
-            Text(text = "Next")
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .verticalScroll(scrollState)
+        ) {
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                onClick = { navController.navigate(ComposeAcademyNavigator.Detail.navigateId) }) {
+                Text(text = "Next Navigation")
+            }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                onClick = { navController.navigate(ComposeAcademyNavigator.Backdrop.navigateId) }) {
+                Text(text = "Backdrop Scaffold")
+            }
         }
     }
 }
