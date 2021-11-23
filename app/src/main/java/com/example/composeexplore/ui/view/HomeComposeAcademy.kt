@@ -12,7 +12,8 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 enum class ComposeAcademyNavigator(val navigateId: String) {
     Main("main"),
     Detail("detail"),
-    Backdrop("backdrop")
+    Backdrop("backdrop"),
+    ScrollToFade("scroll-to-fade")
 }
 
 @ExperimentalMaterialApi
@@ -91,6 +92,30 @@ fun HomeComposeAcademy() {
             },
         ) {
             MainBackdropScaffold()
+        }
+
+        composable(
+            ComposeAcademyNavigator.ScrollToFade.navigateId,
+            enterTransition = { _, _ ->
+                slideInHorizontally(
+                    initialOffsetX = { 300 },
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = FastOutSlowInEasing
+                    )
+                ) + fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = { _, _ ->
+                slideOutHorizontally(
+                    targetOffsetX = { 300 },
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = FastOutSlowInEasing
+                    )
+                ) + fadeOut(animationSpec = tween(300))
+            },
+        ) {
+            ScrollToFadeTopBar(navController = navController)
         }
     }
 }

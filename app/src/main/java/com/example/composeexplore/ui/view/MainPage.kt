@@ -91,6 +91,13 @@ fun MainPage(navController: NavController) {
                 onClick = { navController.navigate(ComposeAcademyNavigator.Backdrop.navigateId) }) {
                 Text(text = "Backdrop Scaffold")
             }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                onClick = { navController.navigate(ComposeAcademyNavigator.ScrollToFade.navigateId) }) {
+                Text(text = "Scroll-to-fade TopBar Scaffold")
+            }
         }
     }
 }
