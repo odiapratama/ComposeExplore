@@ -19,9 +19,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.navigation.NavController
 import com.example.composeexplore.R
-import com.example.composeexplore.ui.component.multifab.MultiFab
-import com.example.composeexplore.ui.component.multifab.MultiFabItem
-import com.example.composeexplore.ui.component.multifab.MultiFabState
+import com.example.composeexplore.ui.component.widgets.MultiFab
+import com.example.composeexplore.ui.component.widgets.MultiFabItem
+import com.example.composeexplore.ui.component.widgets.MultiFabState
 
 @Composable
 fun MainPage(navController: NavController) {
@@ -97,6 +97,13 @@ fun MainPage(navController: NavController) {
                     .padding(8.dp),
                 onClick = { navController.navigate(ComposeAcademyNavigator.ScrollToFade.navigateId) }) {
                 Text(text = "Scroll-to-fade TopBar Scaffold")
+            }
+            Button(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                onClick = { navController.navigate(ComposeAcademyNavigator.DragAndDrop.navigateId) }) {
+                Text(text = "Drag and Drop")
             }
         }
     }

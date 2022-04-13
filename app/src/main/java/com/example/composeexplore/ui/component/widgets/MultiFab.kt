@@ -1,4 +1,4 @@
-package com.example.composeexplore.ui.component.multifab
+package com.example.composeexplore.ui.component.widgets
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas

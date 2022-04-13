@@ -13,7 +13,8 @@ enum class ComposeAcademyNavigator(val navigateId: String) {
     Main("main"),
     Detail("detail"),
     Backdrop("backdrop"),
-    ScrollToFade("scroll-to-fade")
+    ScrollToFade("scroll-to-fade"),
+    DragAndDrop("drag-and-drop")
 }
 
 @ExperimentalMaterialApi
@@ -116,6 +117,30 @@ fun HomeComposeAcademy() {
             },
         ) {
             ScrollToFadeTopBar(navController = navController)
+        }
+
+        composable(
+            ComposeAcademyNavigator.DragAndDrop.navigateId,
+            enterTransition = { _, _ ->
+                slideInHorizontally(
+                    initialOffsetX = { 300 },
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = FastOutSlowInEasing
+                    )
+                ) + fadeIn(animationSpec = tween(300))
+            },
+            exitTransition = { _, _ ->
+                slideOutHorizontally(
+                    targetOffsetX = { 300 },
+                    animationSpec = tween(
+                        durationMillis = 300,
+                        easing = FastOutSlowInEasing
+                    )
+                ) + fadeOut(animationSpec = tween(300))
+            },
+        ) {
+            DragAndDrop()
         }
     }
 }
