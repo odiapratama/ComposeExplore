@@ -24,9 +24,9 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import androidx.constraintlayout.compose.atLeast
-import com.example.composeexplore.ui.component.CustomColumn
-import com.example.composeexplore.ui.component.CustomLayout
-import com.example.composeexplore.ui.component.StaggeredGrid
+import com.example.composeexplore.ui.component.custom.CustomColumn
+import com.example.composeexplore.ui.component.custom.CustomLayout
+import com.example.composeexplore.ui.component.custom.StaggeredGrid
 import com.example.composeexplore.ui.layout.customPadding
 import com.example.composeexplore.ui.layout.firstBaselineToTop
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
