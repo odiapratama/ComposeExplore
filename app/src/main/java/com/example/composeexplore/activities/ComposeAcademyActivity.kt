@@ -10,11 +10,13 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 import com.example.composeexplore.ui.view.HomeComposeAcademy
+import dev.chrisbanes.snapper.ExperimentalSnapperApi
 
+@ExperimentalSnapperApi
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 class ComposeAcademyActivity : AppCompatActivity() {
 
-    @ExperimentalMaterialApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,6 +29,7 @@ class ComposeAcademyActivity : AppCompatActivity() {
     }
 }
 
+@ExperimentalSnapperApi
 @ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable

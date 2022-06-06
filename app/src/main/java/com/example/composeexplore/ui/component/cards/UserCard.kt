@@ -73,7 +73,7 @@ fun UserCard(user: User) {
                 textAlign = TextAlign.Center
             )
 
-            if (!foodItems.isNullOrEmpty()) {
+            if (!foodItems.isEmpty()) {
                 Text(
                     text = "$${foodItems.values.sumOf { it.price }}",
                     fontSize = 16.sp,

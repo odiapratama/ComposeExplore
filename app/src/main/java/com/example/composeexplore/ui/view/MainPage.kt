@@ -77,34 +77,50 @@ fun MainPage(navController: NavController) {
                 .fillMaxSize()
                 .verticalScroll(scrollState)
         ) {
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                onClick = { navController.navigate(ComposeAcademyNavigator.Detail.navigateId) }) {
-                Text(text = "Next Navigation")
-            }
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                onClick = { navController.navigate(ComposeAcademyNavigator.Backdrop.navigateId) }) {
-                Text(text = "Backdrop Scaffold")
-            }
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                onClick = { navController.navigate(ComposeAcademyNavigator.ScrollToFade.navigateId) }) {
-                Text(text = "Scroll-to-fade TopBar Scaffold")
-            }
-            Button(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                onClick = { navController.navigate(ComposeAcademyNavigator.DragAndDrop.navigateId) }) {
-                Text(text = "Drag and Drop")
-            }
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.Detail.navigateId,
+                buttonText = "Next Navigation"
+            )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.Backdrop.navigateId,
+                buttonText = "Backdrop Scaffold"
+            )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.ScrollToFade.navigateId,
+                buttonText = "Scroll-to-fade TopBar Scaffold"
+            )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.DragAndDrop.navigateId,
+                buttonText = "Drag and Drop"
+            )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.Parallax.navigateId,
+                buttonText = "Parallax"
+            )
         }
+    }
+}
+
+@Composable
+fun ButtonNavigation(
+    navController: NavController,
+    navigateId: String,
+    buttonText: String
+) {
+    Button(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(8.dp),
+        onClick = { navController.navigate(navigateId) }) {
+        Text(text = buttonText)
     }
 }

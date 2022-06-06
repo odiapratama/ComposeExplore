@@ -31,7 +31,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.composeexplore.R
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
+import dev.chrisbanes.snapper.ExperimentalSnapperApi
 
+@ExperimentalSnapperApi
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +50,8 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@ExperimentalSnapperApi
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun InitUI() {
@@ -213,6 +218,8 @@ fun GoToList() {
     }
 }
 
+@ExperimentalSnapperApi
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun GoComposeAcademy() {
@@ -226,6 +233,8 @@ fun GoComposeAcademy() {
     }
 }
 
+@ExperimentalSnapperApi
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Preview(showBackground = true)
 @Composable
