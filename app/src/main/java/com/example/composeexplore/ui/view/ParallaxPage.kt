@@ -31,7 +31,7 @@ fun ParallaxPage() {
     }
     Scaffold(modifier = Modifier.fillMaxSize()) {
         val vehicleUiInfo = VehicleUiInfo.create(
-            itemWidthDp = 400f,
+            itemWidthDp = 300f,
             screenWidthDp = LocalConfiguration.current.screenWidthDp.dp.value,
             parallaxOffset = .33f,
             itemFadePx = .5f

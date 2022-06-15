@@ -2,14 +2,14 @@ package com.example.composeexplore.ui.component.cards
 
 import android.content.res.Resources
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.composeexplore.data.model.Vehicle
+import com.example.composeexplore.ui.component.widgets.Mirror
 import com.google.accompanist.coil.rememberCoilPainter
 import kotlin.math.abs
 
@@ -48,24 +49,11 @@ fun VehicleCard(vehicle: Vehicle) {
     val vehicleUiInfo = LocalVehicleUiInfo.current
     var itemX by remember { mutableStateOf(0f) }
 
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (image, name) = createRefs()
-
-        Image(
-            painter = rememberCoilPainter(request = vehicle.image),
-            contentDescription = vehicle.name,
-            contentScale = ContentScale.Crop,
-            modifier = Modifier
-                .size(vehicleUiInfo.width.dp)
-                .constrainAs(image) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                }
-                .onGloballyPositioned {
-                    itemX = it.positionInWindow().x
-                }
-        )
-
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 8.dp)
+    ) {
         val offsetCenterX = itemX - vehicleUiInfo.centeredPx
         val itemAlpha = ((vehicleUiInfo.parallaxFadePx - abs(offsetCenterX)) / vehicleUiInfo.parallaxFadePx).coerceAtLeast(0f)
         Text(
@@ -74,16 +62,26 @@ fun VehicleCard(vehicle: Vehicle) {
             fontWeight = FontWeight.ExtraBold,
             color = Color.Black,
             modifier = Modifier
-                .constrainAs(name) {
-                    start.linkTo(image.start)
-                    end.linkTo(image.end)
-                    top.linkTo(image.bottom)
-                }
+                .align(Alignment.CenterHorizontally)
                 .offset {
-                    IntOffset(x = ((offsetCenterX * vehicleUiInfo.parallaxOffset).toInt()), y = -50)
+                    IntOffset(x = ((offsetCenterX * vehicleUiInfo.parallaxOffset).toInt()), y = 0)
                 }
                 .padding(top = 16.dp)
                 .alpha(itemAlpha)
         )
+
+        Mirror {
+            Image(
+                painter = rememberCoilPainter(request = vehicle.image),
+                contentDescription = vehicle.name,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .size(vehicleUiInfo.width.dp)
+                    .onGloballyPositioned {
+                        itemX = it.positionInWindow().x
+                    }
+                    .clip(RoundedCornerShape(24.dp))
+            )
+        }
     }
 }
