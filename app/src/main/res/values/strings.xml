@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ComposeExplore</string>
+    <string name="loading">Loading</string>
+    <string name="prefix_counter">Counter : %s</string>
 </resources>

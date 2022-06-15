@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
@@ -59,6 +59,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecyle_version"
     implementation "androidx.activity:activity-compose:$activity_compose_version"
     implementation "dev.chrisbanes.snapper:snapper:$snapper_version"
+    implementation "androidx.glance:glance-appwidget:$glance_version"
 
     // Coil
     implementation "com.google.accompanist:accompanist-coil:$coil_version"
