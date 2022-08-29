@@ -13,6 +13,7 @@ import dev.chrisbanes.snapper.ExperimentalSnapperApi
 
 enum class ComposeAcademyNavigator(val navigateId: String) {
     Main("main"),
+    Widget("widgets"),
     Detail("detail"),
     Backdrop("backdrop"),
     ScrollToFade("scroll-to-fade"),
@@ -49,6 +50,10 @@ fun HomeComposeAcademy() {
 
         composeNavigation(route = ComposeAcademyNavigator.Parallax.navigateId) {
             ParallaxPage()
+        }
+
+        composeNavigation(route = ComposeAcademyNavigator.Widget.navigateId) {
+            WidgetsPage()
         }
     }
 }

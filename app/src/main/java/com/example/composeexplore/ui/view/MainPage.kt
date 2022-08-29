@@ -79,6 +79,12 @@ fun MainPage(navController: NavController) {
         ) {
             ButtonNavigation(
                 navController = navController,
+                navigateId = ComposeAcademyNavigator.Widget.navigateId,
+                buttonText = "Widgets"
+            )
+
+            ButtonNavigation(
+                navController = navController,
                 navigateId = ComposeAcademyNavigator.Detail.navigateId,
                 buttonText = "Next Navigation"
             )
