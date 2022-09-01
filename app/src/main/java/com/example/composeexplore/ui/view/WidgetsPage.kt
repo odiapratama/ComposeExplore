@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.composeexplore.ui.component.ProgressButton
 import com.example.composeexplore.ui.component.widgets.SwipeButton
+import com.example.composeexplore.ui.component.widgets.TypeWriterText
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -39,6 +40,11 @@ fun WidgetsPage() {
 
             }
 
+            TypeWriterText(texts = listOf(
+                "Hello World!\uD83D\uDC4F",
+                "Hello Android!❤",
+                "Hello Developers!\uD83D\uDE0E"
+            ))
         }
     }
 }
