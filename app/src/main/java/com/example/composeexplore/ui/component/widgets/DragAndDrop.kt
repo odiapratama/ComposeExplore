@@ -47,7 +47,7 @@ fun <T> DragTarget(
                         currentState.draggableComposable = content
                     },
                     onDrag = { change, dragAmount ->
-                        change.consumeAllChanges()
+                        change.consume()
                         currentState.dragOffset += Offset(dragAmount.x, dragAmount.y)
                     },
                     onDragEnd = {
