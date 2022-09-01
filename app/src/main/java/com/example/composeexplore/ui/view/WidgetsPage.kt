@@ -12,6 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.composeexplore.ui.component.ProgressButton
+import com.example.composeexplore.ui.component.widgets.CustomTab
 import com.example.composeexplore.ui.component.widgets.SwipeButton
 import com.example.composeexplore.ui.component.widgets.TypeWriterText
 import kotlinx.coroutines.delay
@@ -24,6 +25,9 @@ fun WidgetsPage() {
         val coroutineScope = rememberCoroutineScope()
         val (isComplete, setIsComplete) = remember {
             mutableStateOf(false)
+        }
+        val (selected, setSelected) = remember {
+            mutableStateOf(0)
         }
 
         Column(
@@ -40,11 +44,19 @@ fun WidgetsPage() {
 
             }
 
-            TypeWriterText(texts = listOf(
-                "Hello World!\uD83D\uDC4F",
-                "Hello Android!❤",
-                "Hello Developers!\uD83D\uDE0E"
-            ))
+            TypeWriterText(
+                texts = listOf(
+                    "Hello World!\uD83D\uDC4F",
+                    "Hello Android!❤",
+                    "Hello Developers!\uD83D\uDE0E"
+                )
+            )
+
+            CustomTab(
+                selectedItem = selected,
+                items = listOf("Kotlin", "Flutter"),
+                onClick = setSelected
+            )
         }
     }
 }
