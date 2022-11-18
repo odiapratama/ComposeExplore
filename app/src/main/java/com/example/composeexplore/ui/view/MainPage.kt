@@ -1,5 +1,6 @@
 package com.example.composeexplore.ui.view
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -23,6 +24,7 @@ import com.example.composeexplore.ui.component.widgets.MultiFab
 import com.example.composeexplore.ui.component.widgets.MultiFabItem
 import com.example.composeexplore.ui.component.widgets.MultiFabState
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun MainPage(navController: NavController) {
 
@@ -111,6 +113,12 @@ fun MainPage(navController: NavController) {
                 navController = navController,
                 navigateId = ComposeAcademyNavigator.Parallax.navigateId,
                 buttonText = "Parallax"
+            )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.Motion.navigateId,
+                buttonText = "Motion Layout"
             )
         }
     }

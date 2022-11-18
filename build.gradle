@@ -8,7 +8,7 @@ buildscript {
         compose_version = '1.2.1'
         activity_compose_version = '1.4.0'
         coil_version = '0.10.0'
-        constraint_version = '1.0.0'
+        constraint_version = '1.1.0-alpha03'
         nav_compose_version = '2.4.2'
         accompanist_version = '0.21.3-beta'
         junit_version = '4.13.2'

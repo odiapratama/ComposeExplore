@@ -18,7 +18,8 @@ enum class ComposeAcademyNavigator(val navigateId: String) {
     Backdrop("backdrop"),
     ScrollToFade("scroll-to-fade"),
     DragAndDrop("drag-and-drop"),
-    Parallax("parallax")
+    Parallax("parallax"),
+    Motion("motion")
 }
 
 @ExperimentalSnapperApi
@@ -54,6 +55,10 @@ fun HomeComposeAcademy() {
 
         composeNavigation(route = ComposeAcademyNavigator.Widget.navigateId) {
             WidgetsPage()
+        }
+
+        composeNavigation(route = ComposeAcademyNavigator.Motion.navigateId) {
+            MotionPage()
         }
     }
 }
