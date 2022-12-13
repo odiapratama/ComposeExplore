@@ -120,6 +120,12 @@ fun MainPage(navController: NavController) {
                 navigateId = ComposeAcademyNavigator.Motion.navigateId,
                 buttonText = "Motion Layout"
             )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.CardStack.navigateId,
+                buttonText = "Card Flip"
+            )
         }
     }
 }

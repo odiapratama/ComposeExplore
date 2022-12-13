@@ -6,6 +6,8 @@ import androidx.compose.animation.core.tween
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavGraphBuilder
+import com.example.composeexplore.ui.view.cardstack.CardStackLayout
+import com.example.composeexplore.utils.deck
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
@@ -19,7 +21,8 @@ enum class ComposeAcademyNavigator(val navigateId: String) {
     ScrollToFade("scroll-to-fade"),
     DragAndDrop("drag-and-drop"),
     Parallax("parallax"),
-    Motion("motion")
+    Motion("motion"),
+    CardStack("card-stack")
 }
 
 @ExperimentalSnapperApi
@@ -57,8 +60,8 @@ fun HomeComposeAcademy() {
             WidgetsPage()
         }
 
-        composeNavigation(route = ComposeAcademyNavigator.Motion.navigateId) {
-            MotionPage()
+        composeNavigation(route = ComposeAcademyNavigator.CardStack.navigateId) {
+            CardStackLayout(deck = deck, position = 1)
         }
     }
 }
