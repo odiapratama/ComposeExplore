@@ -47,3 +47,5 @@ val deck = listOf(
         back = CardBack
     )
 )
+
+val videoUrl = "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"

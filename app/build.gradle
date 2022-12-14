@@ -73,6 +73,9 @@ dependencies {
     // Coil
     implementation "com.google.accompanist:accompanist-coil:$coil_version"
 
+    // ExoPlayer
+    implementation "com.google.android.exoplayer:exoplayer:$exoplayer_version"
+
     testImplementation "junit:junit:$junit_version"
     androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_core_version"
