@@ -18,7 +18,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 
-enum class ButtonState { PRESSED, IDLE }
+enum class ButtonState { PRESSED, IDLE, LOADING }
 
 fun Modifier.bounceEffect() = composed {
     var buttonState by remember { mutableStateOf(ButtonState.IDLE) }

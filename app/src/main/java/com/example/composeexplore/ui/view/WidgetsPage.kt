@@ -1,10 +1,7 @@
 package com.example.composeexplore.ui.view
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Divider
@@ -14,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.composeexplore.ui.component.ProgressButton
@@ -34,7 +32,8 @@ fun WidgetsPage() {
         }
 
         Column(
-            modifier = Modifier.padding(horizontal = 16.dp)
+            modifier = Modifier.padding(horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             SwipeButton(text = "Slide to Unlock", isComplete = isComplete) {
                 coroutineScope.launch {
@@ -69,35 +68,69 @@ fun WidgetsPage() {
 
             Divider(Modifier.padding(vertical = 16.dp))
 
-            Button(
-                onClick = { },
-                shape = RoundedCornerShape(16.dp),
-                contentPadding = PaddingValues(16.dp),
-                modifier = Modifier.bounceEffect()
-            ) {
-                Text(text = "Bounce Button")
-            }
+            ButtonEffects()
 
             Divider(Modifier.padding(vertical = 16.dp))
 
-            Button(
-                onClick = { },
-                shape = RoundedCornerShape(16.dp),
-                contentPadding = PaddingValues(16.dp),
-                modifier = Modifier.pressedEffect()
-            ) {
-                Text(text = "Pressed Button")
-            }
+            ButtonLoading("Refresh")
+        }
+    }
+}
 
-            Divider(Modifier.padding(vertical = 16.dp))
+@Composable
+fun ButtonEffects() {
+    Row(
+        modifier = Modifier
+            .height(IntrinsicSize.Min)
+            .fillMaxWidth()
+    ) {
+        Button(
+            onClick = { },
+            shape = RoundedCornerShape(16.dp),
+            contentPadding = PaddingValues(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .bounceEffect()
+        ) {
+            Text(text = "Bounce")
+        }
 
-            Button(
-                onClick = { },
-                contentPadding = PaddingValues(16.dp),
-                modifier = Modifier.shapedEffect()
-            ) {
-                Text(text = "Shaped Button")
-            }
+        Divider(
+            modifier = Modifier
+                .padding(horizontal = 4.dp)
+                .fillMaxHeight()
+                .width(1.dp)
+        )
+
+        Button(
+            onClick = { },
+            shape = RoundedCornerShape(16.dp),
+            contentPadding = PaddingValues(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .pressedEffect()
+        ) {
+            Text(text = "Pressed")
+        }
+
+        Divider(
+            modifier = Modifier
+                .padding(horizontal = 4.dp)
+                .fillMaxHeight()
+                .width(1.dp)
+        )
+
+        Button(
+            onClick = { },
+            contentPadding = PaddingValues(16.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .shapedEffect()
+        ) {
+            Text(text = "Shaped")
         }
     }
 }
