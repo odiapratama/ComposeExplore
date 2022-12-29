@@ -132,6 +132,12 @@ fun MainPage(navController: NavController) {
                 navigateId = ComposeAcademyNavigator.VideoPlayer.navigateId,
                 buttonText = "Video Player"
             )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.PIN.navigateId,
+                buttonText = "PIN Layout"
+            )
         }
     }
 }

@@ -24,7 +24,8 @@ enum class ComposeAcademyNavigator(val navigateId: String) {
     Parallax("parallax"),
     Motion("motion"),
     CardStack("card-stack"),
-    VideoPlayer("video-player")
+    VideoPlayer("video-player"),
+    PIN("pin")
 }
 
 @ExperimentalSnapperApi
@@ -68,6 +69,10 @@ fun HomeComposeAcademy() {
 
         composeNavigation(route = ComposeAcademyNavigator.VideoPlayer.navigateId) {
             VideoPlayerPage(videoUrl)
+        }
+
+        composeNavigation(route = ComposeAcademyNavigator.PIN.navigateId) {
+            PINPage()
         }
     }
 }
