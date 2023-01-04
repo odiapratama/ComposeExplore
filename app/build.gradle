@@ -54,7 +54,6 @@ android {
 }
 
 dependencies {
-
     implementation "androidx.core:core-ktx:$core_ktx_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "com.google.android.material:material:$material_version"
@@ -69,6 +68,7 @@ dependencies {
     implementation "androidx.activity:activity-compose:$activity_compose_version"
     implementation "dev.chrisbanes.snapper:snapper:$snapper_version"
     implementation "androidx.glance:glance-appwidget:$glance_version"
+    implementation "com.airbnb.android:lottie-compose:$lottie_version"
 
     // Coil
     implementation "com.google.accompanist:accompanist-coil:$coil_version"

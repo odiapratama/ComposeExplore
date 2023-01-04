@@ -138,6 +138,12 @@ fun MainPage(navController: NavController) {
                 navigateId = ComposeAcademyNavigator.PIN.navigateId,
                 buttonText = "PIN Layout"
             )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.LOTTIE.navigateId,
+                buttonText = "Lottie Animation"
+            )
         }
     }
 }

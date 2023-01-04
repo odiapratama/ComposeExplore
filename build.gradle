@@ -14,11 +14,12 @@ buildscript {
         nav_compose_version = '2.5.3'
         accompanist_version = '0.21.3-beta'
         junit_version = '4.13.2'
-        junit_ext_version = '1.1.4'
-        espresso_core_version = '3.5.0'
+        junit_ext_version = '1.1.5'
+        espresso_core_version = '3.5.1'
         snapper_version = '0.2.0'
-        glance_version = '1.0.0-alpha05'
+        glance_version = '1.0.0-SNAPSHOT'
         exoplayer_version = '2.18.2'
+        lottie_version = "4.0.0"
     }
     repositories {
         google()
