@@ -32,14 +32,12 @@ fun MainPage(navController: NavController) {
     val context = LocalContext.current
     val items = listOf(
         MultiFabItem(
-            "test1",
             icon = ContextCompat.getDrawable(context, R.drawable.ic_add)!!
                 .toBitmap()
                 .asImageBitmap(),
             label = "test1"
         ),
         MultiFabItem(
-            "test2",
             icon = ContextCompat.getDrawable(context, R.drawable.ic_add)!!
                 .toBitmap()
                 .asImageBitmap(),
@@ -143,6 +141,12 @@ fun MainPage(navController: NavController) {
                 navController = navController,
                 navigateId = ComposeAcademyNavigator.LOTTIE.navigateId,
                 buttonText = "Lottie Animation"
+            )
+
+            ButtonNavigation(
+                navController = navController,
+                navigateId = ComposeAcademyNavigator.SWIPE_ACTION.navigateId,
+                buttonText = "Swipe Action"
             )
         }
     }

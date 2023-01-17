@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import com.example.composeexplore.data.model.Card
 import com.example.composeexplore.data.model.CardBack
 import com.example.composeexplore.data.model.CardFront
+import com.example.composeexplore.data.model.Email
 
 val deck = listOf(
     Card(
@@ -49,3 +50,15 @@ val deck = listOf(
 )
 
 const val videoUrl = "https://storage.googleapis.com/exoplayer-test-media-0/BigBuckBunny_320x180.mp4"
+
+val emailSamples = mutableListOf<Email>().apply {
+    repeat(10) {
+        add(
+            Email(
+                subject = "Subject $it",
+                message = "Message $it",
+                dateTime = "${it + 1}:00"
+            )
+        )
+    }
+}.toList()

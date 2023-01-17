@@ -36,7 +36,6 @@ enum class MultiFabState {
 }
 
 class MultiFabItem(
-    val identifier: String,
     val icon: ImageBitmap,
     val label: String
 )

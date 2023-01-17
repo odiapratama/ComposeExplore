@@ -26,7 +26,8 @@ enum class ComposeAcademyNavigator(val navigateId: String) {
     CardStack("card-stack"),
     VideoPlayer("video-player"),
     PIN("pin"),
-    LOTTIE("pin")
+    LOTTIE("lottie"),
+    SWIPE_ACTION("swipe-action")
 }
 
 @ExperimentalSnapperApi
@@ -78,6 +79,10 @@ fun HomeComposeAcademy() {
 
         composeNavigation(route = ComposeAcademyNavigator.LOTTIE.navigateId) {
             LottiePage()
+        }
+
+        composeNavigation(route = ComposeAcademyNavigator.SWIPE_ACTION.navigateId) {
+            SwipeActionPage()
         }
     }
 }
