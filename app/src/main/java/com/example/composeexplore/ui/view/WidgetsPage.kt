@@ -14,7 +14,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.composeexplore.ui.component.ProgressButton
 import com.example.composeexplore.ui.component.widgets.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -35,6 +34,10 @@ fun WidgetsPage() {
             modifier = Modifier.padding(horizontal = 16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            AutoSizeTextField(inputValueChanged = {})
+
+            Spacer(modifier = Modifier.padding(vertical = 16.dp))
+
             SwipeButton(text = "Slide to Unlock", isComplete = isComplete) {
                 coroutineScope.launch {
                     delay(2000)

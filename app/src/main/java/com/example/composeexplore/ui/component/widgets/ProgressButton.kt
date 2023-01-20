@@ -1,4 +1,4 @@
-package com.example.composeexplore.ui.component
+package com.example.composeexplore.ui.component.widgets
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
