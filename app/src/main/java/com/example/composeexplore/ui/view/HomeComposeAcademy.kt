@@ -27,7 +27,8 @@ enum class ComposeAcademyNavigator(val navigateId: String) {
     VideoPlayer("video-player"),
     PIN("pin"),
     LOTTIE("lottie"),
-    SWIPE_ACTION("swipe-action")
+    SWIPE_ACTION("swipe-action"),
+    DYNAMIC_ISLAND("dynamic-island")
 }
 
 @ExperimentalSnapperApi
@@ -83,6 +84,10 @@ fun HomeComposeAcademy() {
 
         composeNavigation(route = ComposeAcademyNavigator.SWIPE_ACTION.navigateId) {
             SwipeActionPage()
+        }
+
+        composeNavigation(route = ComposeAcademyNavigator.DYNAMIC_ISLAND.navigateId) {
+            DynamicIslandPage()
         }
     }
 }

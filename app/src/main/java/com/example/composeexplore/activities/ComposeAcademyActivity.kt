@@ -5,8 +5,6 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
 import com.example.composeexplore.ui.theme.ComposeExploreTheme
 import com.example.composeexplore.ui.view.HomeComposeAcademy
@@ -35,18 +33,6 @@ class ComposeAcademyActivity : AppCompatActivity() {
 @Composable
 fun InitView() {
     Scaffold(
-        topBar = {
-            TopAppBar(
-                title = {
-                    Text(text = "Compose Academy")
-                },
-                actions = {
-                    IconButton(onClick = { }) {
-                        Icon(Icons.Filled.Favorite, contentDescription = null)
-                    }
-                }
-            )
-        },
         content = {
             HomeComposeAcademy()
         }

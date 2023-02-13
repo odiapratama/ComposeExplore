@@ -1,6 +1,7 @@
 package com.example.composeexplore.ui.view
 
 import android.annotation.SuppressLint
+import android.os.Build
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -148,6 +149,14 @@ fun MainPage(navController: NavController) {
                 navigateId = ComposeAcademyNavigator.SWIPE_ACTION.navigateId,
                 buttonText = "Swipe Action"
             )
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                ButtonNavigation(
+                    navController = navController,
+                    navigateId = ComposeAcademyNavigator.DYNAMIC_ISLAND.navigateId,
+                    buttonText = "Dynamic Island"
+                )
+            }
         }
     }
 }

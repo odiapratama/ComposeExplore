@@ -69,6 +69,7 @@ dependencies {
     implementation "dev.chrisbanes.snapper:snapper:$snapper_version"
     implementation "androidx.glance:glance-appwidget:$glance_version"
     implementation "com.airbnb.android:lottie-compose:$lottie_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$systemui_version"
 
     // Coil
     implementation "com.google.accompanist:accompanist-coil:$coil_version"
